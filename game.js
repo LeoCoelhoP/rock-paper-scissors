@@ -25,7 +25,6 @@ function getMatchWinner (playerScore, computerScore) {
     if (playerScore > computerScore) {
         midContainerPara.textContent = 'GAME OVER!';
         midContainerNextPara.textContent = 'PlAYER WIN!'
-        midContainerLastPara.textContent = 'COMPUTER WIN!'
         midContainerLastPara.textContent = 'refresh the page to restart.'
 
     } else if (computerScore > playerScore) {
