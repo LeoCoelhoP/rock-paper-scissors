@@ -81,13 +81,14 @@ function startGame() {
             round ++;
             element.setAttribute('style', 'background: white; border: auto;');
 
-
+            
             if (round > 5) {
                 getMatchWinner(playerScore, computerScore);
                 topContainer.setAttribute('style', 'display: none;');
                 playerOptions.forEach((element) => {
                     element.disbled = true;
                 });
+                return;
             }
         });
     });
