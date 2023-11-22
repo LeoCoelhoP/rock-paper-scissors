@@ -1,0 +1,53 @@
+* {
+    margin: 0;
+}
+
+html, body, .container {
+    height: 98%;
+}
+body {
+    background-image: url(' ../images/background.gif');
+    font-family: 'Pixelify Sans', sans-serif;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    flex: 1;
+}
+
+
+
+.top-inside-container, .mid-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+
+}
+
+.mid-section {
+    flex: 2;
+    justify-content: center;
+}
+
+.player-deck {
+    display: flex;
+    align-self: stretch;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 5%;
+    flex: 1;
+}
+
+p {
+    font-size: 100%;
+    text-align: center;
+    color:yellow;
+}
+
+.mid-container-last-para {
+    font-size: 40%;
+}

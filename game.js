@@ -3,18 +3,6 @@ function getComputerChoice(OPTIONS) {
     return OPTIONS[index]
 }
 
-function getPlayerChoice() {
-    let invalidChoice = true;
-    while (invalidChoice){
-        let playerChoice = prompt('Rock, paper or scissors?').toLowerCase();
-        if (playerChoice === 'rock' || playerChoice === 'paper' || playerChoice == 'scissors') {
-            return playerChoice
-        } else {
-            console.log('Pick a valid object.')
-        }        
-    }
-}
-
 function getRoundWinner(computerSelection, playerSelection) {
     if (computerSelection === playerSelection) {
         return 'Tie';
@@ -29,43 +17,98 @@ function getRoundWinner(computerSelection, playerSelection) {
     }
 }
 
-function game() {
-    let isGameOn = true;
-    let computerScore = 0;
-    let playerScore = 0;
-    let round = 1;
+function getMatchWinner (playerScore, computerScore) {
+    midContainerNextPara = document.querySelector('.mid-container-next-para')
+    midContainerLastPara = document.querySelector('.mid-container-last-para')
 
-    while (isGameOn) {
 
-        console.log(`*===* ROUND ${round}/5 *===*`)
-        const OPTIONS = ['rock', 'paper', 'scissors'];
-        let computerSelection = getComputerChoice(OPTIONS);
-        let playerSelection = getPlayerChoice();
-        let roundWinner = getRoundWinner(computerSelection, playerSelection);
+    if (playerScore > computerScore) {
+        midContainerPara.textContent = 'GAME OVER!';
+        midContainerNextPara.textContent = 'PlAYER WIN!'
+        midContainerLastPara.textContent = 'COMPUTER WIN!'
+        midContainerLastPara.textContent = 'refresh the page to restart.'
 
-        if (roundWinner === 'Computer') {
-            computerScore++;
-            console.log(`You lose! ${computerSelection} beats ${playerSelection}\n `)
-        } else if (roundWinner == 'Tie') {
-            console.log('Tie!\n ')
-        } else {
-            playerScore++;
-            console.log(`You win! ${playerSelection} beats ${computerSelection}\n `)
-        }
-
-        round++;
-        
-        if (round > 5) {
-            console.log('Game Over!')
-
-            if (computerScore > playerScore) {
-                console.log('You lose!')
-            } else {
-                console.log('You win!')
-            }
-            break;
-        }
+    } else {
+        midContainerPara.textContent = 'GAME OVER!';
+        midContainerNextPara.textContent = 'COMPUTER WIN!'
+        midContainerLastPara.textContent = 'REFRESH THE PAGE TO RESTART.'
     }
+
 }
 
-game()
+function playRound(playerChoice) {
+    let playerSelection = playerChoice
+
+    const OPTIONS = ['rock', 'paper', 'scissors'];
+    let computerSelection = getComputerChoice(OPTIONS);
+
+    let roundWinner = getRoundWinner(computerSelection, playerSelection);
+
+    let message;
+
+    return (roundWinner === 'Computer')? 'computer': (roundWinner === 'Player') ? 'player' : 'tie';
+
+}
+
+function startGame() {
+    topContainer.setAttribute('style', 'display: flex;');
+
+    playerChoiceButtons = document.querySelectorAll('button');
+    let playerOptions = Array.from(playerChoiceButtons);
+    playerOptions.forEach((element) => {
+        element.addEventListener('click', () => {
+
+            roundCounter.textContent = `ROUND ${round}/5`
+            scoreboard.textContent = `PLAYER ${playerScore} X ${computerScore} COMPUTER`;
+
+            playerChoice = element.id;
+
+
+            let roundWinner = playRound(playerChoice)
+            if (roundWinner === 'computer') {
+                computerScore++;
+                midContainerPara.textContent = `ROUND WINNER:\xa0\xa0${roundWinner.toUpperCase()}!`;
+            } else if (roundWinner === 'player') {
+                playerScore++;
+                midContainerPara.textContent = `ROUND WINNER:\xa0\xa0${roundWinner.toUpperCase()}!`;
+            } else {
+                midContainerPara.textContent = 'TIE!';
+            }
+
+            scoreboard.textContent = `PLAYER ${playerScore} X ${computerScore} COMPUTER`;
+
+            round ++;
+
+
+            if (round > 5) {
+                playerOptions.forEach((element) => {
+                    element.disbled = true;
+                });
+                gameOn = false;
+                getMatchWinner();
+                topContainer.setAttribute('style', 'display: none;');
+            }
+        });
+    });
+}
+gameOn = true;
+computerScore = 0;
+playerScore = 0;
+round = 1;
+
+const topContainer = document.querySelector('.top-inside-container');
+const roundCounter = document.querySelector('.round-counter');
+const scoreboard = document.querySelector('.scoreboard');
+const matchResult = document.querySelector('.match-result');
+
+const midSection = document.querySelector('.mid-section');
+const midContainerPara = document.querySelector('.mid-container-para');
+
+const playerDeck = document.querySelector('.player-deck');
+
+topContainer.appendChild(roundCounter);
+topContainer.appendChild(scoreboard);
+topContainer.appendChild(matchResult);
+
+
+startGame();

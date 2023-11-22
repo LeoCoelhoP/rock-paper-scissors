@@ -4,10 +4,35 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Rock Papers Scissors!</title>
-        <script src="game.js"></script>
+        <link rel="stylesheet" href="./css/style.css">    
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap" rel="stylesheet">
+        <script src="game.js" defer></script>
     </head>    
     
     <body>
+        <div class="container">
+
+        <div class="top-inside-container">
+            <p class="round-counter">PICK ANY TO START</p>
+            <p class="scoreboard"></p>
+            <p class="match-result"></p>
+        </div>
+
+        <div class="mid-section">
+            <p class="mid-container-para"></p>
+            <p class="mid-container-next-para"></p>
+            <p class="mid-container-last-para"></p>
+        </div>
+
+        <div class="player-deck">
+            <button id="rock"><img class='img-player-deck' src="./images/hand-rock-svgrepo-com.svg" alt="Rock selector" width="50px" height="50px"></button>
+            <button id="paper"><img class='img-player-deck' src="./images/hand-paper-svgrepo-com.svg" alt="Paper selector" width="50px" height="50px"></button>
+            <button id="scissors"><img class='img-player-deck' src="./images/hand-scissors-solid-svgrepo-com.svg" alt="Scissors selector" width="50px" height="50px"></button>
+        </div>
+
+        </div>
 
     </body>
 </html>
