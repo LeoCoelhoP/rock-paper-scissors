@@ -21,7 +21,6 @@ function getMatchWinner (playerScore, computerScore) {
     midContainerNextPara = document.querySelector('.mid-container-next-para')
     midContainerLastPara = document.querySelector('.mid-container-last-para')
 
-
     if (playerScore > computerScore) {
         midContainerPara.textContent = 'GAME OVER!';
         midContainerNextPara.textContent = 'PlAYER WIN!'
@@ -66,7 +65,6 @@ function startGame() {
 
             playerChoice = element.id;
 
-
             let roundWinner = playRound(playerChoice)
             if (roundWinner === 'computer') {
                 computerScore++;
@@ -89,7 +87,7 @@ function startGame() {
                     element.disbled = true;
                 });
                 gameOn = false;
-                getMatchWinner();
+                getMatchWinner(playerScore, computerScore);
                 topContainer.setAttribute('style', 'display: none;');
             }
         });
