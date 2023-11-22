@@ -52,3 +52,7 @@ p {
 .mid-container-last-para {
     font-size: 10px;
 }
+
+button:hover {
+    background: lightyellow;
+}
