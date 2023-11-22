@@ -86,7 +86,8 @@ function startGame() {
                 getMatchWinner(playerScore, computerScore);
                 topContainer.setAttribute('style', 'display: none;');
                 playerOptions.forEach((element) => {
-                    element.disbled = true;
+                    element.disabled = true;
+                    element.remove();
                 });
                 return;
             }
