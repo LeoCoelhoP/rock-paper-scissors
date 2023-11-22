@@ -83,12 +83,11 @@ function startGame() {
 
 
             if (round > 5) {
+                getMatchWinner(playerScore, computerScore);
+                topContainer.setAttribute('style', 'display: none;');
                 playerOptions.forEach((element) => {
                     element.disbled = true;
                 });
-                gameOn = false;
-                getMatchWinner(playerScore, computerScore);
-                topContainer.setAttribute('style', 'display: none;');
             }
         });
     });
@@ -111,6 +110,5 @@ const playerDeck = document.querySelector('.player-deck');
 topContainer.appendChild(roundCounter);
 topContainer.appendChild(scoreboard);
 topContainer.appendChild(matchResult);
-
 
 startGame();
