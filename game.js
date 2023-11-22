@@ -28,9 +28,13 @@ function getMatchWinner (playerScore, computerScore) {
         midContainerLastPara.textContent = 'COMPUTER WIN!'
         midContainerLastPara.textContent = 'refresh the page to restart.'
 
-    } else {
+    } else if (computerScore > playerScore) {
         midContainerPara.textContent = 'GAME OVER!';
         midContainerNextPara.textContent = 'COMPUTER WIN!'
+        midContainerLastPara.textContent = 'REFRESH THE PAGE TO RESTART.'
+    } else {
+        midContainerPara.textContent = 'GAME OVER!';
+        midContainerNextPara.textContent = 'TIE!'
         midContainerLastPara.textContent = 'REFRESH THE PAGE TO RESTART.'
     }
 
@@ -57,8 +61,8 @@ function startGame() {
     let playerOptions = Array.from(playerChoiceButtons);
     playerOptions.forEach((element) => {
         element.addEventListener('click', () => {
-
-            roundCounter.textContent = `ROUND ${round}/5`
+            element.setAttribute('style', 'background: lightyellow;');
+            roundCounter.textContent = `ROUND ${round}/5`;
             scoreboard.textContent = `PLAYER ${playerScore} X ${computerScore} COMPUTER`;
 
             playerChoice = element.id;
@@ -78,6 +82,7 @@ function startGame() {
             scoreboard.textContent = `PLAYER ${playerScore} X ${computerScore} COMPUTER`;
 
             round ++;
+            element.setAttribute('style', 'background: white; border: auto;');
 
 
             if (round > 5) {
